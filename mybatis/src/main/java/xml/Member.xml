@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xml.member">
+
+	<insert id="memberInsert" parameterType="member"><!-- alias 형태로 parameter받는다 -->
+	 insert into member values (#{id}, #{pass}, #{name},
+	 	#{gender}, #{tel}, #{email}, #{picture}, sysdate)
+	</insert>
+	
+	<select id="count" resultType="int"> 	<!-- 같은 namepace 에서만 count 사용가능 -->
+		select count(*) from member 		<!-- 세미콜론 ㄴㄴ; -->
+	</select>
+	
+	<select id="list" resultType="member">  <!-- alias에 member맞춰야함 -->
+		select * from member
+	</select>
+	
+	<select id="selectId" parameterType="string" resultType="member">  
+		select * from member where id = #{value}
+	</select>
+	
+	<select id="selectName" parameterType="string" resultType="member">  
+		select * from member where name like '%${value}%'
+		
+		<!-- #{value} : 문자 :'value' 숫자 :value 타입에따라 ''자동작성해줌
+ 			'%#{value}%' 해버리면 자동 작성떄문에 ''두개가 중첩되버린다.
+ 		'' contains,사용시 like 사용. 이때 #말고 $쓰자
+			 ${value} : 무조건 value로 출력
+		 -->
+	</select>
+	
+	<!-- select 하면 resultType이 와야한다 select * 하면 alias로-->
+	<!-- ''못들어가니 String이 resultType가 될수없다. 이럴떄 map쓴다. -->
+	<select id="selectColumn" parameterType="map" resultType="member">
+		select * from member where ${col} like '%${value}%'
+		<!--  sql에 ''못들어간다 $사용	 -->
+	</select>
+	
+	<select id="selectNameGender" parameterType="map" resultType="member">
+		select * from member where name like '%${name}%'and gender = #{gender}
+	</select>
+	
+	
+	
+</mapper>
+<!-- end -->
+
+
+
+
+
+
+
+
+

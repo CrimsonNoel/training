@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script>
+function load(url){
+	const xhttp = new XMLHttpRequest();
+	xhttp.open("GET",url,true)
+	xhttp.send()
+	xhttp.onreadystatechange = callBack;
+}
+function callBack(){
+	if(this.readyState == 4 && this.status == 200){
+		let items = JSON.parse(this.responseText)
+		let out = '<table class= "w3-table-all">'
+		for( item of items)	{
+			
+			out += "<tr><td>" +item.author.book+"</td>"
+			out += "<td>" + item.author.pubDate+"</td></tr>"
+			console.log(item)
+		}   out +="</table>"
+		document.querySelector("#area").innerHTML = out
+		console.log(JSON.stringify(items) )
+	
+	}
+}
+</script>
+<body>
+<input type="button" value ="Json UTF read" onclick="load('test03UTF.json')"/>
+	<div id="area"></div>
+	<div id="desc"></div>
+</body>
+</html>

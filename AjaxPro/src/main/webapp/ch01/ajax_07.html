@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script> // post방식 앞에 한건 get방식
+	$(document).ready(function(){
+		$("button").click(function(){
+			const queryString = $("form[name=ajaxForm]").serialize()
+			//name = sasasa&city = sasasa
+			console.log(queryString)
+			$.ajax({
+				type : 'post',
+				url  : 'test08.jsp',
+				data : queryString,
+				error: function(xhr, status, error){ console.log(error)},
+				success: function(data){
+					alert("data: "+data+"\n Status: "+status)
+					$("#view").html(data)
+				}	})	})	})
+</script>
+<body>
+<form name="ajaxForm">
+<input type="text" name="name">
+<input type="text" name="city">
+</form>
+<div id="view"></div>
+<button>POST request</button>
+</body>
+</html>

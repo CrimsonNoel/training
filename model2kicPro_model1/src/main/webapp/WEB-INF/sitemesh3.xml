@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sitemesh>
+	<!-- WEB-INF/sitemesh3.xml -->
+	<mapping path="/member/*" decorator="/layout/layout.jsp"> </mapping>
+	<mapping path="/board/*" decorator="/layout/layout.jsp"> </mapping>
+	<!--  위 path는 /타입/* 타입의 *가오면 레이아웃적용 -->
+	
+	
+	<mapping path="*/pictureimgForm" exclude="true" />
+	<mapping path="*/picturePro" exclude="true" />
+	<mapping path="*/boardCommentPro" exclude="true" />
+	<!-- 위 path는 헤더뺴기 --> 
+</sitemesh>

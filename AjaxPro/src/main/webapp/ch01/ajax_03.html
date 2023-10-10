@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>  // json 예제 // get방식 post방식하고는 좀 다르다 
+					  // post 방식은 send 파라미터에 값이 들어간다.  
+	function load(url){
+		const xhttp = new XMLHttpRequest()
+		xhttp.open("GET",url,true) ; 
+		xhttp.send()
+		xhttp.onreadystatechange = callBack }
+	function callBack(){
+		if(this.readyState == 4 && this.status == 200){
+			let items = JSON.parse(this.responseText)
+			// String ---> object  JSON.parse(item)
+			//			   let items = ("author" : "test입니다")
+			// object ---> String(json) JSON.stringify(item)			
+			let out ='<table class="w3-table-all">'
+			for( item of items){
+				out += "<tr><td>" +item.author.book+"</td>"
+				out += "<td>" + item.author.pubDate+"</td></tr>"
+				console.log(item)
+			}   out +="</table>"
+			document.querySelector("#area").innerHTML = out
+			console.log(JSON.stringify(items) )
+		}	}
+</script>
+<body>
+	<input type="button" value ="Json UTF read" onclick="load('test03UTF.json')"/>
+	<div id="area"></div>
+	<div id="desc"></div>
+
+</body>
+</html>

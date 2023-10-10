@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script >
+	$(document).ready(function(){
+		$("button").click(function(){
+			$.get("test07.jsp?aaa=1111&bbb=2222", function(data, status){
+				alert("data: "+data+"\n Status: "+status)
+					$("#view").html(data)			
+			})	})	})
+</script>
+<body>
+<!-- url의 지정된 부분의 data를 받아서id가 view인 곳에 html 로 찍어내라  -->
+	<button>Get request</button>
+	<div id="view"></div>
+</body>
+
+</html>

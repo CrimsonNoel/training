@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xml.Student1">
+		
+		<!--  insert into 객체명 values = column값 전부 부르는거 객체명 values 사이에 
+				콜럼이름 부르면 그값만 입력하고 나머지는 null로 넣겠다. 따라오는값도 콜럼하고 갯수,종류같아야함-->
+			<insert id="insert" parameterType="student">
+			insert into student (studno, name, grade, id, jumin, deptno1) values
+			(#{studno},#{name},#{grade},#{id},#{jumin},#{major1})
+			</insert>
+			
+			<update id="update" parameterType="student">
+				update student set grade = #{grade}, weight = #{weight}, height = #{height}, profno=#{profno}
+				where studno = #{studno}
+			</update>			
+			<delete id="delete" parameterType="int">
+				delete from student where studno = #{value}		
+			</delete>
+
+
+			<!-- table column 명과 bean에 property 값이 상이할때 -->
+			<resultMap type="student" id="studentRMap">
+				<result column="deptno1" jdbcType="BIGINT" property="major1" />
+				<result column="deptno2" jdbcType="BIGINT" property="major2" />
+			</resultMap>
+									<!-- resultMap id가 select resultType하고 같아야 불러진다. -->
+			<select id="selectRMap" resultMap="studentRMap">
+				select * from student
+			</select>
+			<select id="select" resultType="student">
+				select * from student
+			</select>			
+	
+</mapper>
+<!-- end -->
+
+
+
+
+
+
+
+
+

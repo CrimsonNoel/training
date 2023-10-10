@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>  /*  javascript 예제  */
+#google {
+   text-align: center;
+   position: absolute;
+   top: 30%;
+   left: 40%;
+}
+
+input {
+   width: 300px;
+   height: 30px;
+   font-size: 20px;
+   border: thin;
+   border-color: grey;
+}
+
+p {
+   height: 3px;
+}
+
+a {
+   text-decoration: none;
+   color: grey;
+}
+</style>
+</head>
+<script >
+	const xhttp = new XMLHttpRequest(); // ajaxobject
+	function startSuggest(){
+		setTimeout("sendKeyword()",500);	}
+	
+	function sendKeyword(){
+		let keyword = document.querySelector("#keyword").value
+		if(keyword !=''){
+			console.log(keyword)
+			const params = encodeURIComponent(keyword)
+			xhttp.open("GET", "command.jsp?keyword="+params, true)
+			xhttp.send()
+			xhttp.onreadystatechange = displayResult		}	}
+	
+	function displayResult(){
+		if(this.readyState == 4 && this.status == 200){
+			const listView = document.querySelector("#suggestList")
+			listView.innerHTML = this.responseText
+		}}
+</script>
+<body>
+<div id="google">
+	<img   src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" />
+		<form name="search">
+			<input type="text" id="keyword" autocomplete="off" onkeydown="startSuggest()">
+			<hr>
+			<div id="suggestList" style="text-align: left;"></div>
+		</form>
+</div>
+</body>
+</html>

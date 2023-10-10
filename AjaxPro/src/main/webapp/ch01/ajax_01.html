@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>The XMLHttpRequest Object</title>
+<script>
+		function loadJsp(){
+				// javascript를 이용한 ajax
+				const xhttp = new XMLHttpRequest(); // ajax object
+				xhttp.open("GET","test01.jsp",true)
+				xhttp.send();
+				xhttp.onreadystatechange = function(){
+					if(this.readyState == 4 && this.status == 200){
+						alert(this.responseText)
+						document.getElementById("demo").innerHTML = this.responseText
+					}
+				}
+				
+		}
+	
+	</script>
+</head>
+<body>
+	<h2>The XMLHttpRequest Object</h2>
+	<button type="button" onclick="loadJsp()">request data</button>
+	<div id="demo"></div>
+	
+	
+	
+</body>
+</html>

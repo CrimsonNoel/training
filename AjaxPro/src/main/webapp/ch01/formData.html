@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+	function chkForm(){
+		const formData = new FormData(document.querySelector('form'))
+		for(f of formData.entries()){
+			alert(f[0]+"="+f[1]) // f[0]에는 key f[1]에는 value 값을 넣겟다는
+		}
+	}
+</script>
+<body>
+	<form>
+		id: <input type="text" name="id"> <br>
+		name: <input type="text" name="name"><br>
+		addr: <input type="text" name="addr"><br>
+		<input type="button" value="확인" onclick="chkForm()"><br>
+	</form>
+</body>
+</html>

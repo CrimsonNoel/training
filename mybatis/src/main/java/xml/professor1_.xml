@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="">
+
+	<select id="count" resultType="int">
+		select count(*) from professor
+	</select>
+
+	<select id="list" resultType="professor">
+		select * from professor
+	</select>
+
+	<select id="selectdeptno" resultType="professor" parameterType="int">
+		select * from professor where deptno = #{value}
+	</select>
+
+	<select id="selectnameposition" resultType="professor" parameterType="map">
+		select * from professor where name like '%{name}%' and position #{value}
+	
+	</select>
+
+</mapper>

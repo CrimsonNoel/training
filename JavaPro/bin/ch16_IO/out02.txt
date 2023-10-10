@@ -1,0 +1,4 @@
+123abc가나다
+반갑습니다. FileOutputStream 예제 입니다. 
+반갑습니다.
+안녕.

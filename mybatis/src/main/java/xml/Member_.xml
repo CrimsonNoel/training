@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace=""> <!-- 연결할거랑 같은 namepace,NS 써야함 -->
+<insert id="memberInsert" parameterType="mameber">
+	insert into member values (	#{id},#{pass},#{name},
+		#{gender},#{tel},#{email},#{picture}, sysdate)		
+	)
+</insert> <!--  sql에 insert .. sql문 입력하라는거? -->
+<select id="count" resultType="int">
+ select count(*) from member
+</select>
+
+<select id="list" resultType="member">
+	select * from member
+</select>
+
+<select id="selectId" parameterType="String" resultType="member">
+	select * from member where name like '%{value}%'	
+</select>
+
+<select id="selectColumn" parameterType="map" resultType="member">
+	select * from member where ${col} like '%{value}%'
+</select>
+
+<select id="selectNameGender" parameterType="map" resultType="member">
+	select * from member where name like '%${name}' and gender = #{gender}
+</select>
+
+
+
+</mapper>

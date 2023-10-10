@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>#xml</comment>
+<entry key="subject">컴퓨터공학</entry>
+<entry key="name">김자바</entry>
+<entry key="tel">1234</entry>
+</properties>

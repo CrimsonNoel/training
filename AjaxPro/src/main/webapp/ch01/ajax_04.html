@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+		window.onload = function(){ // HTML은 탑엔 다운으로 실행되기 떄문에 변수 지정할떄 위치 신경써야함 아니면 window.onload 사용해서 한번 훑게만들어야한다.
+		const xhttp = new XMLHttpRequest();
+		xhttp.open("GET","getMaxTemperature.jsp",true); 
+		xhttp.send()
+		xhttp.onreadystatechange = callBack
+		let maxtemp = document.querySelector("maxtemp");		}
+		
+	function callBack(){
+		if(this.readyState == 4 && this.status == 200){
+			const temps = this.responseText.split(",")
+			let max = parseFloat(temps[0])
+			for( let i = 1; i<temps.length; i++){
+				temps[i] = parseFloat(temps[i])
+				if(max < temps[i])
+					max = temps[i]		
+			}
+				alert(max);
+				maxtemp.innerHTML = "<strong>" + max + "</strong>"
+		}} 
+</script>
+<body>
+	최근 4일간 최고기온:
+		<span id="maxtemp"></span>
+</body>
+</html>

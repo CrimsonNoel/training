@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="">
+	<select id="select" resultType="professor" parameterType="map">
+		select * from professor
+		
+		<trim prefix='where' prefixOverrides="AND || OR">
+			<if test="deptno != null">and deptno=#{deptno}</if>
+			<if test="position != null">and position=#{position}</if>
+			<if test="profno != null">and profno=#{profno}</if>
+			
+			
+			<if test="datsd">and deptno in
+				<foreach collection="datas" item='d' separator="," open="(" close=")">
+					#{d}				
+				</foreach>
+			</if>
+		</trim>
+		
+	</select>
+
+</mapper>
